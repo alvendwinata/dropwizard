@@ -1,0 +1,18 @@
+How to make Dropwizard application using maven intelij 
+- Create new Project 
+- Choose maven
+- Project SDK using 1.8 Version 
+- Checklist create from archetype
+- Add Archetype
+- fill Group Id with = io.dropwizard.archetypes
+- artifactId with = java-simple 
+- version = 0.9.2 ( Version ) 
+- next
+- fill group id ( com.hackthon )
+- fill artifact id 
+- next
+- add new properties ( name with value )
+- next
+- create project name and location 
+- next 
+

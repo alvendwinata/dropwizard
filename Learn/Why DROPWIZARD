@@ -1,0 +1,17 @@
+- Why Dropwizard ? high-performance RESTful backends
+- REST, or REpresentational State Transfer, is an architectural style for providing standards between computer systems on the web, making it easier for systems to communicate with each other. 
+- SEPARATION OF CLIENT AND SERVER = In the REST architectural style, the implementation of the client and the implementation of the server can be done independently without each knowing about the other. This means that the code on the client side can be changed at any time without affecting the operation of the server, and the code on the server side can be changed without affecting the operation of the client.
+
+Dropwizard is a framework that bundles a few other frameworks and Java libraries needed for fast bootstraping of Java REST services, it includes in a package:
+Jetty -> as a Servlet container, HTTP Client and HTTP server. 
+Jersey -> A JAX-RS implementation used for creating REST services with Java.
+Jackson -> de/serialization of JSON for your REST services.
+Metrics -> for tracking your app performance.
+
+The servlet container is an extension of a Web server in the same way CGI, ASP, and PHP are. A servlet functions just like them, but the language in which it is written is Java. That's the main difference. The servlet doesn't talk to the client directly. Flow of control = Web Browser -> Web Server -> Container -> Generic Servlet -> HTTP Servlet -> Our Servlet -> Container -> Web Server -> Web Browser 
+
+JAX-RS = a Java programming language API spec that provides support in creating web services according to the Representational State Transfer (REST) architectural pattern. JAX-RS uses annotations, introduced in Java SE 5, to simplify the development and deployment of web service clients and endpoints.
+
+Maven is a build automation tool used primarily for Java projects.
+Maven addresses two aspects of building software: first, it describes how software is built, and second, it describes its dependencies. 
+

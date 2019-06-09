@@ -1,0 +1,3 @@
+Curl = Client for url 
+
+curl -v -H "Content-Type: application/json" GET \ -X POST -d '{"message":"this is curl"}' http://localhost:8080/hello/world 
