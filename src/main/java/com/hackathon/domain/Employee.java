@@ -1,4 +1,4 @@
-package com.hackathon.dao;
+package com.hackathon.domain;
 
 public class Employee {
   private Long id;

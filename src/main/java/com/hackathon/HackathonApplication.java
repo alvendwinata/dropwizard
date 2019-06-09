@@ -1,6 +1,8 @@
 package com.hackathon;
 
-import com.hackathon.domain.HelloWorldServiceImpl;
+import com.hackathon.db.EmployeeAccessor;
+import com.hackathon.domain.EmployeeApiApiImpl;
+import com.hackathon.domain.HelloWorldApiApiImpl;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -26,7 +28,8 @@ public class HackathonApplication extends Application<HackathonConfiguration> {
                     final Environment environment) {
         try {
             // TODO: implement application
-            environment.jersey().register(new HelloWorldServiceImpl());
+            environment.jersey().register(new HelloWorldApiApiImpl());
+            environment.jersey().register(new EmployeeApiApiImpl(new EmployeeAccessor()));
         } catch (Exception e){
             e.printStackTrace();
         }
