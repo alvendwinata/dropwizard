@@ -50,25 +50,27 @@ public class EmployeeAccessor implements EmployeeAccessorInterface {
   @Override public Employee upsertEmployee(Employee employee) {
     Employee result = new Employee();
     try{
-      String SQL_UPSERT = "";
+      String SQL_UPSERT;
       if(employee.getId() == null){
         SQL_UPSERT = "INSERT INTO employees(first_name, last_name, e_position, phone, e_mail) VALUES ('"
         + employee.getFirstName() + "', '" + employee.getLastName() + "', '" + employee.getPosition() + "', '" + employee.getPhone() + "', '" + employee.getEmail() + "') RETURNING id";
+
+        conn = DriverManager.getConnection(url, "postgres", "postgres");
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPSERT);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        resultSet.next();
+
+        long id = resultSet.getLong("id");
+        result.setId(id);
+        result.setFirstName(employee.getFirstName());
+        result.setLastName(employee.getLastName());
+        result.setPosition(employee.getPosition());
+        result.setEmail(employee.getEmail());
+        result.setPhone(employee.getPhone());
+      } else {
+        //do update
       }
-
-      conn = DriverManager.getConnection(url, "postgres", "postgres");
-      PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPSERT);
-      ResultSet resultSet = preparedStatement.executeQuery();
-
-      resultSet.next();
-
-      long id = resultSet.getLong("id");
-      result.setId(id);
-      result.setFirstName(employee.getFirstName());
-      result.setLastName(employee.getLastName());
-      result.setPosition(employee.getPosition());
-      result.setEmail(employee.getEmail());
-      result.setPhone(employee.getPhone());
 
       conn.close();
     }catch (Exception e){
