@@ -68,6 +68,8 @@ public class EmployeeAccessor implements EmployeeAccessorInterface {
         result.setPosition(employee.getPosition());
         result.setEmail(employee.getEmail());
         result.setPhone(employee.getPhone());
+
+        return result;
       } else {
         //do update
       }

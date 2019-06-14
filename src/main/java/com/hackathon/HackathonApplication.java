@@ -1,8 +1,10 @@
 package com.hackathon;
 
 import com.hackathon.db.EmployeeAccessor;
-import com.hackathon.domain.EmployeeApiApiImpl;
-import com.hackathon.domain.HelloWorldApiApiImpl;
+import com.hackathon.db.UserAccessor;
+import com.hackathon.impl.EmployeeApiApiImpl;
+import com.hackathon.impl.HelloWorldApiApiImpl;
+import com.hackathon.impl.UserApiImpl;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -30,6 +32,7 @@ public class HackathonApplication extends Application<HackathonConfiguration> {
             // TODO: implement application
             environment.jersey().register(new HelloWorldApiApiImpl());
             environment.jersey().register(new EmployeeApiApiImpl(new EmployeeAccessor()));
+            environment.jersey().register(new UserApiImpl(new UserAccessor()));
         } catch (Exception e){
             e.printStackTrace();
         }

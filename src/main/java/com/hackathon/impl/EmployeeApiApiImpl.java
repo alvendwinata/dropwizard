@@ -1,7 +1,10 @@
-package com.hackathon.domain;
+package com.hackathon.impl;
 
 import com.hackathon.api.EmployeeApi;
 import com.hackathon.db.EmployeeAccessorInterface;
+import com.hackathon.domain.Employee;
+import com.hackathon.domain.UpsertEmployeeResult;
+import com.hackathon.domain.UpsertEmployeeSpec;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

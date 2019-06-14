@@ -1,6 +1,8 @@
-package com.hackathon.domain;
+package com.hackathon.impl;
 
 import com.hackathon.api.HelloWorldApi;
+import com.hackathon.domain.HelloWorldResult;
+import com.hackathon.domain.HelloWorldSpec;
 
 public class HelloWorldApiApiImpl implements HelloWorldApi {
   @Override public HelloWorldResult getResult(HelloWorldSpec spec) {
