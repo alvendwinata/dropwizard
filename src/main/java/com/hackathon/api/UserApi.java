@@ -1,6 +1,8 @@
 package com.hackathon.api;
 
 import com.hackathon.domain.GetAllUserResult;
+import com.hackathon.domain.LoginUserResult;
+import com.hackathon.domain.LoginUserSpec;
 import com.hackathon.domain.UpsertUserResult;
 import com.hackathon.domain.UpsertUserSpec;
 import javax.ws.rs.GET;
@@ -21,5 +23,10 @@ public interface UserApi {
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   UpsertUserResult upsertUser(UpsertUserSpec spec);
+
+  @Path("/login")
+  @POST
+  @Produces(MediaType.APPLICATION_JSON)
+  LoginUserResult login(LoginUserSpec spec);
 
 }

@@ -74,6 +74,21 @@ public class UserAccessor implements UserAccessorInterface {
         conn.close();
         return result;
       } else {
+        SQL_UPSERT = "UPDATE users SET name='" + user.getName() + "', email='" + user.getEmail() + "', password='" + user.getPassword() + "', phone='"
+            + user.getPhone() + "', role='" + user.getRole() + "' WHERE id=" + user.getId() + "RETURNING ID";
+        conn = DriverManager.getConnection(url, "postgres", "postgres");
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPSERT);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if(resultSet.next()) {
+          result.setId(user.getId());
+          result.setName(user.getName());
+          result.setEmail(user.getEmail());
+          result.setPassword(user.getPassword());
+          result.setPhone(user.getPhone());
+          result.setRole(user.getRole());
+          conn.close();
+          return result;
+        }
         //do update
         conn.close();
         return result;
