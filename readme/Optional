@@ -1,0 +1,20 @@
+Optional 
+
+  public static void main(String[] args) {
+    Rate rate = new Rate();
+    rate.setName("test");
+    System.out.println(
+        Optional.ofNullable(rate)
+            .map(Rate::getName)
+            .orElse("DEFAULT")
+    );
+
+    String modifierName = "test";
+    modifierName = Optional.ofNullable(modifierName).orElse("default");
+
+    APIRequest request = new APIRequest(rate);
+    String s = Optional.ofNullable(request)
+        .flatMap(APIRequest::getContext)
+        .map(APIRequestContext::getApplication)
+        .orElseThrow(new WebApplicationException(Response.Status.BAD_REQUEST));
+  }

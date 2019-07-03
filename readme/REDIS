@@ -1,0 +1,27 @@
+  public static void main(String[] args) {
+    //init
+    Config config = new Config();
+    config.useSingleServer().setAddress("redis://127.0.0.1:6379");
+    RedissonClient redisson = Redisson.create(config);
+
+    RBucket<String> bucket = redisson.getBucket("TEST:REDIS:5");
+    bucket.delete();
+    bucket.set("123456");
+    RBatch batch = redisson.createBatch();
+    RKeysAsync keys = batch.getKeys();
+
+    RFuture<Long> longRFuture = keys.countExistsAsync("TEST:REDIS:5");
+    Map<String, RFuture<Long>> futureMap = new HashMap<>();
+    futureMap.put("TEST:REDIS:5", longRFuture);
+
+    longRFuture = keys.countExistsAsync("TEST:REDIS:6");
+    futureMap.put("TEST:REDIS:6", longRFuture);
+    
+    batch.execute();
+
+    redisson.getKeys().deleteByPattern("TEST*");
+  }
+
+
+how to delete keys with pattern on redis using command line 
+redis-cli --scan --pattern "JIKA:APA*" |xargs -L 1 redis-cli del
